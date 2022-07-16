@@ -121,7 +121,7 @@ function App() {
   });
 
   const [role, setRole] = useState('public');
-  
+  const [walletAddress, setWalletAddress] = useState('');
   console.log(role);
 
   const claimNFTs = () => {
@@ -178,6 +178,13 @@ function App() {
     }
   };
 
+  const handleWalletAddress = (value) => {
+    setWalletAddress(value);
+  }
+
+  const handleAddWhitelist = () => {
+    setWalletAddress('');
+  }
   const getConfig = async () => {
     const configResponse = await fetch("/config/config.json", {
       headers: {
@@ -249,8 +256,8 @@ function App() {
                 >
                   Wallet Address:
                 </s.TextDescription>
-                <input type="text" className="form-control" placeholder="Enter wallet address" id="wallet_address" name="wallet_address"/>
-                <StyledButton type="submit" className="btn btn-primary float-right mt-5" onclick="{}">Add</StyledButton>
+                <input type="text" className="form-control" placeholder="Enter wallet address" id="wallet_address" name="wallet_address" value={walletAddress} onChange={(e) => handleWalletAddress(e.target.value)}/>
+                <StyledButton type="submit" className="btn btn-primary float-right mt-5" onClick={() => handleAddWhitelist()}>Add</StyledButton>
               </s.Container>
             </div>   
             <div className="col-md-6">
