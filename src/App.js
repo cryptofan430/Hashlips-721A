@@ -282,24 +282,27 @@ function App() {
                 </StyledLink>
               </s.TextDescription>
               <s.SpacerSmall />
-              <s.Container flex={2}
-                jc={"center"}
-                ai={"center"} 
-                style={{display: "-webkit-inline-box"}}
-                className="form-inline"
-              >
-                <s.TextTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                  className="mr-5"
-                >
-                  <input type="radio" className="form-check-input" name="private" checked={role === 'private'} value="private" onChange={() => setRole('private')}/>Private
-                </s.TextTitle>
-                <s.TextTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  <input type="radio" className="form-check-input" name="public" checked={role === 'public'} value="public" onChange={() => setRole('public')}/>Public
-                </s.TextTitle>
-              </s.Container>
+              {blockchain.account === "" ||
+                blockchain.smartContract === null ? (''):(
+                  <s.Container flex={2}
+                    jc={"center"}
+                    ai={"center"} 
+                    style={{display: "-webkit-inline-box"}}
+                    className="form-inline"
+                  >
+                    <s.TextTitle
+                      style={{ textAlign: "center", color: "var(--accent-text)" }}
+                      className="mr-5"
+                    >
+                      <input type="radio" className="form-check-input" name="private" checked={role === 'private'} value="private" onChange={() => setRole('private')}/>Private
+                    </s.TextTitle>
+                    <s.TextTitle
+                      style={{ textAlign: "center", color: "var(--accent-text)" }}
+                    >
+                      <input type="radio" className="form-check-input" name="public" checked={role === 'public'} value="public" onChange={() => setRole('public')}/>Public
+                    </s.TextTitle>
+                  </s.Container>
+                )}
               {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
                 <>
                   <s.TextTitle
